@@ -61,10 +61,10 @@ class TkApp:
         self.canvas.itemconfig(46, fill='red1')
  
         #Get largest sum path (but don't show yet)
-        self.max_path(self.grid)
+        self.max_path()
 
 
-    def max_path(self, grid):
+    def max_path(self):
 
         """Dynamic programming approach to maximum sum path."""
 
@@ -76,11 +76,11 @@ class TkApp:
             for j in range(5):
                 if i == 4 and j == 0: continue
                 elif i == 4:
-                    dp_matrix[i][j] = grid[i][j] + dp_matrix[i][j-1]
+                    dp_matrix[i][j] = self.grid[i][j] + dp_matrix[i][j-1]
                 elif j == 0:
-                    dp_matrix[i][j] = grid[i][j] + dp_matrix[i+1][j]
+                    dp_matrix[i][j] = self.grid[i][j] + dp_matrix[i+1][j]
                 else:
-                    dp_matrix[i][j] = grid[i][j] + max(dp_matrix[i+1][j], dp_matrix[i][j-1])
+                    dp_matrix[i][j] = self.grid[i][j] + max(dp_matrix[i+1][j], dp_matrix[i][j-1])
 
         self.max_sum = dp_matrix[0][4]
 
@@ -102,7 +102,7 @@ class TkApp:
         
 
         pprint(dp_matrix)
-        pprint(self.largest_path)
+        print(self.largest_path)
         print(self.max_sum)
 
 
